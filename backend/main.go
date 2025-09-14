@@ -3,7 +3,8 @@ package main
 import (
 	"net/http"
 
-	"github.com/emmaw16917/most-basic-web-app-with-gin-and-vue/backend/service"
+	"github.com/emmaw16917/basic-wiki-with-gin-and-vue/backend/service"
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
@@ -31,6 +32,9 @@ func saveHandler(c *gin.Context) {
 
 func main() {
 	router := gin.Default()
+
+	router.Use(cors.Default()) // 允许跨域请求
+
 	router.GET("/api/page/:title", getHandler)
 	router.POST("/api/page/save", saveHandler)
 
